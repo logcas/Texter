@@ -7,9 +7,7 @@ function storeConfig(vm, confType, key, value) {
       [key]: value
     }
   });
-  ipcRenderer.send('saveConfig', {
-    ...vm.$store.state.Config
-  });
+  ipcRenderer.send('saveConfig', confType, key, value);
 }
 
 export const common = {

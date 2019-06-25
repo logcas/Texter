@@ -1,8 +1,8 @@
 import {
   ipcMain
 } from 'electron';
+import db from '../storage';
 const fs = require('fs');
-const path = require('path');
 
 export default function ipcMixin(win) {
 
@@ -23,52 +23,23 @@ export default function ipcMixin(win) {
   });
 
   // 保存配置
-  ipcMain.on('saveConfig', (e, config) => {
-    const dir = path.resolve(process.env['USERPROFILE'], 'texter');
-    const configPath = path.resolve(dir, 'config.json');
-    const configString = JSON.stringify(config);
-    fs.writeFile(configPath, configString, (err) => {
-      let error;
-      if (err) {
-        error = err;
-      }
+  ipcMain.on('saveConfig', (e, confType, key, value) => {
+    try {
+      db.set(confType, {[key]: value}).write();
+      win.webContents.send('saveConfigResult');
+    } catch(error) {
       win.webContents.send('saveConfigResult', error);
-    });
+    }
   });
 
   // 读配置文件
   ipcMain.on('loadConfig', () => {
-    const dir = path.resolve(process.env['USERPROFILE'], 'texter');
-    const configPath = path.resolve(dir, 'config.json');
-    fs.readFile(configPath, (err, content) => {
-      const defaultConfig = {
-        'common': {
-          language: 'zh-CN',
-          theme: 'light'
-        }
-      };
-      let error;
-      let config;
-      if (err && err.code === 'ENOENT') {
-        let hasDir = fs.exists(dir);
-        if (!hasDir) fs.mkdirSync(dir);
-        fs.writeFile(configPath, JSON.stringify(defaultConfig), (error) => {
-          if (error) {
-            win.webContents.send('getConfig', error);
-            return;
-          }
-          win.webContents.send('getConfig', null, defaultConfig);
-        });
-      } else {
-        if (err) {
-          error = err;
-          config = defaultConfig;
-        } else {
-          config = JSON.parse(content);
-        }
-        win.webContents.send('getConfig', error, config);
-      }
-    })
+    try {
+      let config = db.read().value();
+      win.webContents.send('getConfig', null, config);
+    } catch(error) {
+      win.webContents.send('getConfig', error, config);
+    }
   });
 
   // 写文件，保存文档
