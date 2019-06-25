@@ -1,5 +1,6 @@
 import {
-  ipcMain
+  ipcMain,
+  dialog
 } from 'electron';
 import db from '../storage';
 const fs = require('fs');
