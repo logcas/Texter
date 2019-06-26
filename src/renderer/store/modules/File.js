@@ -15,6 +15,7 @@ let defaultFileStruct = { saveAfterModified: true };
 const state = {
   fileList: {}, // 已打开的文件列表，以键值对形式，绝对路径为键名，file 结构为值
   currentFile: null, // 目前正在编辑的文件，值为文件的绝对路径
+  isChangeFile: false, // 是否打开另一个文档 如果是，则逻辑不是修改
 };
 
 const getters = {
@@ -33,6 +34,9 @@ const getters = {
     let file = state.fileList[path];
     if(!file) return '';
     return file.content;
+  },
+  isChangeFile(state) {
+    return state.isChangeFile;
   }
 };
 
@@ -72,7 +76,11 @@ const mutations = {
   },
   setFileContent(state, content) {
     if(!content || !state.currentFile) return;
+    state.isChangeFile = false;
     state.fileList[state.currentFile].content = content;
+  },
+  changeFile(state) {
+    state.isChangeFile = true;
   }
 };
 
@@ -94,6 +102,9 @@ const actions = {
   },
   setFileContent({ commit }, content) {
     commit('setFileContent', content);
+  },
+  changeFile({ commit }) {
+    commit('changeFile');
   }
 }
 

@@ -23,7 +23,7 @@ export default {
     scrollTopPercent: Number
   },
   computed: {
-    ...mapGetters(["currentCode", "currentFile"])
+    ...mapGetters(["currentCode", "currentFile", "isChangeFile"])
   },
   data() {
     return {
@@ -40,7 +40,8 @@ export default {
   methods: {
     ...mapActions(["setFileContent", "modifyFile"]),
     onInput(val) {
-      this.modifyFile();
+      // ! fix: 改变文件选择时会显示修改过文件
+      if(!this.isChangeFile) this.modifyFile();
       this.setFileContent(val);
     },
     onScroll(e) {

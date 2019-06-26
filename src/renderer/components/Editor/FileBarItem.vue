@@ -4,7 +4,7 @@
     :class="{
     'current': currentFile === file.path
   }"
-    @click="setCurrentFile(file.path)"
+    @click="onSelectFile(file.path)"
     :title="file.name"
   >
     <a-icon type="file-markdown" class="file-icon"/>
@@ -27,7 +27,11 @@ export default {
     ...mapGetters(["currentFile"])
   },
   methods: {
-    ...mapActions(["setCurrentFile", "removeFile", "modifyFile", "saveFile"]),
+    ...mapActions(["setCurrentFile", "removeFile", "modifyFile", "saveFile", "changeFile"]),
+    onSelectFile(path) {
+      this.changeFile();
+      this.setCurrentFile(path);
+    },
     onClose() {
       let file = this.file;
       if (!file.saveAfterModified) {
