@@ -54,7 +54,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .filebar-item {
   position: relative;
   height: 50px;

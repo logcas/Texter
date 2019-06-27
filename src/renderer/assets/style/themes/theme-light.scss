@@ -1,0 +1,27 @@
+@import './theme.scss';
+@import '../colors.scss';
+
+$theme-name: "light";
+
+@include theme-basic(
+$theme-name,
+$font-color-light,
+$font-color-dark,
+// tapSide
+$tapside-background,
+$tapside-tap-background,
+$tapside-tap-hover-color,
+$tapside-round-button-background,
+// FileBar
+$filebar-background,
+$filebar-item-background,
+$filebar-save-mark,
+// Editor Header
+$editor-header-background,
+$editor-header-border,
+$editor-background,
+$editor-markdisplayer-background,
+$edtior-button-hover,
+// global
+$global-background,
+)

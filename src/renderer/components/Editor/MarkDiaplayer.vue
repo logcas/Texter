@@ -54,7 +54,6 @@ export default {
   max-width: 980px;
   margin: 0 auto;
   padding: 45px;
-  background: #fff;
 }
 </style>
 

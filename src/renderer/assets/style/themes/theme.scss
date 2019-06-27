@@ -1,0 +1,93 @@
+@mixin theme-basic($mode-name,
+  $font-color-light,
+  $font-color-dark,
+  // tapSide
+  $tapside-background,
+  $tapside-tap-background,
+  $tapside-tap-hover-color,
+  $tapside-round-button-background,
+  // FileBar
+  $filebar-background,
+  $filebar-item-background,
+  $filebar-save-mark,
+  // Editor Header
+  $editor-header-background,
+  $editor-header-border,
+  $editor-background,
+  $editor-markdisplayer-background,
+  $edtior-button-hover,
+  // global
+  $global-background,
+) {
+
+  html[type=#{$mode-name}] {
+    .main {
+      color: $font-color-dark;
+      background: $global-background !important;
+    }
+
+    .tap-side {
+      background: $tapside-background !important;
+
+      .tap-nav-item {
+        &.current {
+          background: $tapside-tap-background !important;
+        }
+
+        &.current::after {
+          background: $tapside-tap-hover-color !important;
+          box-shadow: 0px 0px 10px 2px $tapside-tap-hover-color !important;
+        }
+
+        &:hover {
+          color: $tapside-tap-hover-color !important;
+        }
+      }
+    }
+
+    .editor {
+      background: $editor-background;
+
+      .editor-header {
+        background: $editor-header-background !important;
+        border-bottom: 1px solid $editor-header-border !important;
+
+        .editor-header-button-group {
+          .editor-header-button {
+
+            &:hover,
+            &.current {
+              color: $edtior-button-hover !important;
+            }
+          }
+        }
+      }
+    }
+
+    .mark-displayer {
+      .markdown-body {
+        background: $editor-markdisplayer-background !important;
+      }
+    }
+
+    .filebar {
+      background: $filebar-background !important;
+    }
+
+    .filebar-item {
+
+      &.current,
+      &:hover {
+        background: $filebar-item-background !important;
+      }
+
+      .file-save-mark {
+        background: $filebar-save-mark !important;
+      }
+    }
+
+    .markdown-body {
+      background: $global-background;
+    }
+  }
+}

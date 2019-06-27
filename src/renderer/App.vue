@@ -47,6 +47,13 @@ export default {
     }
   },
   created() {
+    import( 
+     /* webpackChunkName: "theme-light" */
+     /* webpackMode: "lazy" */
+    './themes/dark'
+    ).then(() => {
+      console.log('懒加载成功');
+    });
     ipcRenderer.on('saveConfigResult', (event, error) => {
       if(error) {
         this.$notification.error({
@@ -69,11 +76,15 @@ export default {
       this.configurate(config.common, 'common');
     });
     ipcRenderer.send("loadConfig");
+  },
+  mounted() {
+    document.documentElement.setAttribute('type', 'light');
   }
 };
 </script>
 
 <style lang="scss">
+@import '@/assets/style/themes/theme-dark.scss';
 .main {
   width: 100%;
   height: 100%;

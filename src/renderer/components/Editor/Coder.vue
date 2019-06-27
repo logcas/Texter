@@ -15,7 +15,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapActions, mapGetters } = createNamespacedHelpers("File");
 import { codemirror } from "vue-codemirror";
 import "../../assets/codemirror.css";
-import "codemirror/theme/base16-light.css";
+import "codemirror/theme/monokai.css";
 
 export default {
   name: "coder",
@@ -31,7 +31,7 @@ export default {
       cmOptions: {
         tabSize: 4,
         mode: "text/plain",
-        theme: "base16-light",
+        theme: "monokai",
         lineNumbers: true,
         line: true
       }
@@ -64,5 +64,16 @@ export default {
     height: 100% !important;
   }
 }
+
+.cm-s-monokai.CodeMirror { background: #282C34; color: #ABB2BF; }
+.cm-s-monokai div.CodeMirror-selected { background: #49483E; }
+.cm-s-monokai .CodeMirror-line::selection, .cm-s-monokai .CodeMirror-line > span::selection, .cm-s-monokai .CodeMirror-line > span > span::selection { background: rgba(73, 72, 62, .99); }
+.cm-s-monokai .CodeMirror-line::-moz-selection, .cm-s-monokai .CodeMirror-line > span::-moz-selection, .cm-s-monokai .CodeMirror-line > span > span::-moz-selection { background: rgba(73, 72, 62, .99); }
+.cm-s-monokai .CodeMirror-gutters { background: #282C34; border-right: 0px; }
+.cm-s-monokai .CodeMirror-guttermarker { color: #CF666F; }
+.cm-s-monokai .CodeMirror-guttermarker-subtle { color: #CF666F; }
+.cm-s-monokai .CodeMirror-linenumber { color: #CF666F; }
+.cm-s-monokai .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
+
 </style>
 

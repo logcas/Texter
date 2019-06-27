@@ -104,7 +104,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .tap-side {
   position: relative;
   margin: 0;

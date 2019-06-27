@@ -33,15 +33,24 @@ export const common = {
     defaultValue: 'Light',
     options: [{
         label: 'Light',
-        value: 'Light'
+        value: 'light'
       },
       {
         label: 'Dark',
-        value: 'Dark'
+        value: 'dark'
       }
     ],
     handler(vm, key, value) {
-      console.log('set theme:', value);
+      document.documentElement.setAttribute('type', value);
+      switch(value) {
+        case 'light': 
+          import('../themes/light').then(() => {});
+          break;
+        case 'dark':
+          import('../themes/dark').then(() => {});
+          break;
+      }
+      storeConfig(vm, 'common', key, value);
     }
   }
 };

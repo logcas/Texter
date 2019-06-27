@@ -1,0 +1,36 @@
+$primary-color: #5576bd;
+$primary-color-dark: #435d99;
+$second-color: #7ebbed;
+$light-color: #fff;
+$dark-color: #000;
+$gray-color: #FAFAFA;
+$gray-color-dark: #EEE;
+$gary-color-darker: #f1f1f1;
+
+/*
+theme - light
+*/
+
+$font-color-light: $light-color;
+$font-color-dark: $dark-color;
+
+// TapSide
+$tapside-background: $primary-color;
+$tapside-tap-background: $primary-color-dark;
+$tapside-tap-hover-color: $second-color;
+$tapside-round-button-background: $light-color;
+
+// FileBar
+$filebar-background: $gray-color;
+$filebar-item-background: $gray-color-dark;
+$filebar-save-mark: $second-color;
+
+// Editor Header
+$editor-header-background: $light-color;
+$editor-header-border: $gary-color-darker;
+$editor-background: $gray-color-dark;
+$editor-markdisplayer-background: $light-color;
+$edtior-button-hover: $second-color;
+
+// global
+$global-background: $light-color;

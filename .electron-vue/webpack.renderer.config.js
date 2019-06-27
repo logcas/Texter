@@ -41,7 +41,12 @@ let rendererConfig = {
       },
       {
         test: /\.less$/,
-        use: ['vue-style-loader', 'css-loader', 'less-loader']
+        use: ['vue-style-loader', 'css-loader', {
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true
+          }
+        }]
       },
       {
         test: /\.css$/,
@@ -129,7 +134,8 @@ let rendererConfig = {
   output: {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
-    path: path.join(__dirname, '../dist/electron')
+    path: path.join(__dirname, '../dist/electron'),
+    chunkFilename: '[name].bundle.js'
   },
   resolve: {
     alias: {
