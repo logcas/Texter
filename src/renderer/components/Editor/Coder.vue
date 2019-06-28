@@ -60,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .code {
+  position: relative;
   >>> .CodeMirror {
     height: 100% !important;
   }
