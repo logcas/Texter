@@ -47,13 +47,6 @@ export default {
     }
   },
   created() {
-    import( 
-     /* webpackChunkName: "theme-light" */
-     /* webpackMode: "lazy" */
-    './themes/dark'
-    ).then(() => {
-      console.log('懒加载成功');
-    });
     ipcRenderer.on('saveConfigResult', (event, error) => {
       if(error) {
         this.$notification.error({
@@ -84,7 +77,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/style/themes/theme-dark.scss';
+@import '@/assets/style/themes/theme-light.scss';
+
 .main {
   width: 100%;
   height: 100%;

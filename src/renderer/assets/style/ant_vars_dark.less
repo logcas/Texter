@@ -1,3 +1,86 @@
+
+@import "~ant-design-vue/lib/style/color/colors.less";
+
+// -------- Colors -----------
+@primary-color : #282C34;
+@gray-color: #ABB2BF;
+@light-color: #CF666F;
+@second-color: #3A3F4B;
+
+// Color used by default to control hover and active backgrounds and for
+// alert info backgrounds.
+@primary-1: color(~`colorPalette('@{primary-color}', 1) `); // replace tint(@primary-color, 90%)
+@primary-2: color(~`colorPalette('@{primary-color}', 2) `); // replace tint(@primary-color, 80%)
+@primary-3: color(~`colorPalette('@{primary-color}', 3) `); // unused
+@primary-4: color(~`colorPalette('@{primary-color}', 4) `); // unused
+@primary-5: @light-color;
+@primary-6: @light-color; // color used to control the text color of active buttons, don't use, use @primary-color
+@primary-7: color(~`colorPalette('@{primary-color}', 7) `); // replace shade(@primary-color, 5%)
+@primary-8: color(~`colorPalette('@{primary-color}', 8) `); // unused
+@primary-9: color(~`colorPalette('@{primary-color}', 9) `); // unused
+@primary-10: color(~`colorPalette('@{primary-color}', 10) `); // unused
+
+// Background color for `<body>`
+@body-background : @primary-color;
+// Base background color for most components
+@component-background : @primary-color;
+@font-family : "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
+"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+@code-family : "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+@heading-color : fade(@gray-color, 100%);
+@text-color : fade(@gray-color, 80%);
+@text-color-secondary : fade(@gray-color, 65%);
+@heading-color-dark : fade(@gray-color, 100%);
+@text-color-dark : fade(@gray-color, 85%);
+@text-color-secondary-dark: fade(@gray-color, 65%);
+
+// Border color
+@border-color-base : @primary-7; // base border outline a component
+@border-color-split : @primary-4; // split border inside a component
+@border-width-base : 1px; // width of the border for a component
+@border-style-base : solid; // style of a components border
+
+// Outline
+@outline-blur-size : 0;
+@outline-width : 2px;
+@outline-color : @primary-color;
+
+@background-color-light : @light-color; // background of header and selected item
+@background-color-base : @gray-color; // Default grey background color
+
+// Disabled states
+@disabled-color : fade(#000, 25%);
+@disabled-bg : @background-color-base;
+@disabled-color-dark : fade(#fff, 35%);
+
+// btn
+@btn-primary-color : @light-color;
+@btn-primary-bg : @primary-4;
+
+@btn-default-color : @gray-color;
+@btn-default-bg : transparent;
+@btn-default-border : @gray-color;
+
+@radio-button-hover-color : @light-color;
+@radio-button-active-color : @gray-color;
+
+@btn-group-border: @gray-color;
+
+// input
+@input-border-color : @second-color;
+@input-bg : @second-color;
+@input-addon-bg : @primary-7;
+@input-hover-border-color : @primary-1;
+
+// tab
+@tabs-active-color: @light-color;
+@tabs-highlight-color: @light-color;
+@tabs-ink-bar-color: @light-color;
+
+// radio
+@radio-dot-color : @gray-color;
+
+/*
 @primary-color: #282C34;
 @primary-color-dark: #1A1D22;
 @second-color: #3A3F4B;
@@ -35,3 +118,4 @@
 @tabs-active-color: @light-color;
 @tabs-ink-bar-color: @light-color;
 @tabs-highlight-color: @light-color;
+*/

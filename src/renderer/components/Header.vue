@@ -1,9 +1,11 @@
 <template>
-  <a-button-group class="feature-button-group">
-    <a-button icon="minus" @click="minimize"/>
-    <a-button icon="fullscreen" @click="resize"/>
-    <a-button icon="close" @click="close"/>
-  </a-button-group>
+  <div class="feature-button-group">
+    <a-button-group>
+      <a-button icon="minus" @click="minimize"/>
+      <a-button icon="fullscreen" @click="resize"/>
+      <a-button icon="close" @click="close"/>
+    </a-button-group>
+  </div>
 </template>
 
 <script>
