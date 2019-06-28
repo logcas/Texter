@@ -1,5 +1,6 @@
 @import './theme.scss';
 @import '../colors.scss';
+@import '../markdown-style/github-markdown-light.scss';
 
 $theme-name: "light";
 
@@ -24,4 +25,5 @@ $editor-markdisplayer-background,
 $edtior-button-hover,
 // global
 $global-background,
+$scroll-color
 )

@@ -1,0 +1,28 @@
+@mixin scrollbar($thumb-color) {
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    opacity: 0;
+    transition: all .4s ease-in;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-button, &::-webkit-scrollbar-corner, &::-webkit-resizer {
+    display: none;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    opacity: 1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    width: 0;
+    border-radius: 4px;
+    opacity: 0;
+  }
+
+}

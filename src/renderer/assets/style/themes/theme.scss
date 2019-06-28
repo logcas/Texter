@@ -1,3 +1,5 @@
+@import '../scrollbar.scss';
+
 @mixin theme-basic($mode-name,
   $font-color-light,
   $font-color-dark,
@@ -18,9 +20,15 @@
   $edtior-button-hover,
   // global
   $global-background,
+  $scroll-color
 ) {
 
   html[type=#{$mode-name}] {
+
+    * {
+      @include scrollbar($scroll-color);
+    }
+
     .main {
       color: $font-color-dark;
       background: $global-background !important;
@@ -64,10 +72,8 @@
       }
     }
 
-    .mark-displayer {
-      .markdown-body {
-        background: $editor-markdisplayer-background !important;
-      }
+    .markdown-body {
+      background: $editor-markdisplayer-background !important;
     }
 
     .filebar {
@@ -84,10 +90,6 @@
       .file-save-mark {
         background: $filebar-save-mark !important;
       }
-    }
-
-    .markdown-body {
-      background: $global-background;
     }
   }
 }

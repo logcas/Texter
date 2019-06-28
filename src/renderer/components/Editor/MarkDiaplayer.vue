@@ -5,7 +5,6 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("File");
-import "../../assets/github-markdown.css";
 const hljs = require("highlight.js"); // https://highlightjs.org/
 const markdown = require("markdown-it")({
   highlight: function(str, lang) {
