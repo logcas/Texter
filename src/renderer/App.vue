@@ -6,14 +6,14 @@
         <router-view/>
       </keep-alive>
     </div>
-    <main-header style="z-index: 99;"/>
+    <system-button style="z-index: 99;"/>
   </div>
 </template>
 
 <script>
 import TapSide from "./components/TapSide";
-import MainHeader from "./components/Header";
 import MainFooter from "./components/Footer";
+import SystemButton from './components/SystemButton';
 import globalConfig from "@/config";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions, mapGetters } = createNamespacedHelpers("Config");
@@ -22,8 +22,8 @@ export default {
   name: "texter",
   components: {
     [TapSide.name]: TapSide,
-    [MainHeader.name]: MainHeader,
-    [MainFooter.name]: MainFooter
+    [MainFooter.name]: MainFooter,
+    [SystemButton.name]: SystemButton
   },
   computed: {
     ...mapGetters("commonConfig")
