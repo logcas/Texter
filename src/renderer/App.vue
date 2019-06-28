@@ -2,7 +2,9 @@
   <div class="main">
     <tap-side style="float: left; width: 80px; z-index: 1;"/>
     <div style="margin-left: 80px; height: 100%;">
-      <router-view/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
     </div>
     <main-header style="z-index: 99;"/>
   </div>
@@ -29,7 +31,7 @@ export default {
   watch: {
     commonConfig(o) {
       // do something
-      let configType = 'common';
+      let configType = "common";
       this.configurate(o, configType);
     }
   },
@@ -41,16 +43,16 @@ export default {
   methods: {
     ...mapActions(["setConfig"]),
     configurate(o, type) {
-      for(let key of Reflect.ownKeys(o)) {
+      for (let key of Reflect.ownKeys(o)) {
         globalConfig[type][key].handler(this, key, o[key], true);
       }
     }
   },
   created() {
-    ipcRenderer.on('saveConfigResult', (event, error) => {
-      if(error) {
+    ipcRenderer.on("saveConfigResult", (event, error) => {
+      if (error) {
         this.$notification.error({
-          message: this.$t('system.saveConfigError'),
+          message: this.$t("system.saveConfigError"),
           description: error.code
         });
         return;
@@ -59,25 +61,25 @@ export default {
     ipcRenderer.on("getConfig", (event, error, config) => {
       if (error) {
         this.$notification.error({
-          message: this.$t('system.readConfigError'),
+          message: this.$t("system.readConfigError"),
           description: error.code
         });
         return;
       }
       console.log(config);
       this.setConfig(config);
-      this.configurate(config.common, 'common');
+      this.configurate(config.common, "common");
     });
     ipcRenderer.send("loadConfig");
   },
   mounted() {
-    document.documentElement.setAttribute('type', 'light');
+    document.documentElement.setAttribute("type", "light");
   }
 };
 </script>
 
 <style lang="scss">
-@import '@/assets/style/themes/theme-light.scss';
+@import "@/assets/style/themes/theme-light.scss";
 
 .main {
   width: 100%;
