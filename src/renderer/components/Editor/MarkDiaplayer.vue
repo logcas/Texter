@@ -3,8 +3,11 @@
 </template>
 
 <script>
+import markedOptions from '../../config/marked';
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("File");
+const marked = require('marked');
+/*
 const hljs = require("highlight.js"); // https://highlightjs.org/
 const markdown = require("markdown-it")({
   highlight: function(str, lang) {
@@ -16,6 +19,7 @@ const markdown = require("markdown-it")({
     return ""; // use external default escaping
   }
 });
+*/
 
 export default {
   name: "mark-displayer",
@@ -25,7 +29,7 @@ export default {
   computed: {
     ...mapGetters(["currentCode"]),
     htmlCode() {
-      return markdown.render(this.currentCode);
+      return marked(this.currentCode, markedOptions);
     }
   },
   watch: {
