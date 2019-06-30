@@ -32,6 +32,15 @@ let rendererConfig = {
   module: {
     rules: [
       {
+        test: /\.worker\.js$/,
+        use: {
+          loader: 'worker-loader',
+          options: {
+            inline: true
+          }
+        }
+      },
+      {
         test: /\.scss$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
@@ -135,7 +144,8 @@ let rendererConfig = {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
     path: path.join(__dirname, '../dist/electron'),
-    chunkFilename: '[name].bundle.js'
+    chunkFilename: '[name].bundle.js',
+    globalObject: 'this'
   },
   resolve: {
     alias: {

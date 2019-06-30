@@ -1,6 +1,5 @@
 import hljs from 'highlight.js';
 import marked from 'marked';
-import 'highlight.js/styles/tomorrow.css';
 
 export default {
   renderer: new marked.Renderer(),
