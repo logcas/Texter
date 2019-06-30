@@ -75,14 +75,11 @@
           </li>
         </ul>
       </div>
-      <div class="editor-inner" v-show="currentFile">
-        <div class="loading-block" v-show="spinning">
-          <a-spin size="large"/>
-        </div>
+      <div class="editor-inner" v-show="editingFile !== null">
         <coder :style="coderStyle" :scrollTopPercent.sync="scrollTopPercent"/>
         <mark-displayer :style="markDisplayerStyle" :scrollTopPercent="scrollTopPercent"/>
       </div>
-      <div class="editor-inner no-opened-doc" v-show="!currentFile">
+      <div class="editor-inner no-opened-doc" v-show="editingFile === null">
         <a-button type="primary" size="large">
           {{ $t('navigator.openFile') }}
         </a-button>
@@ -109,12 +106,11 @@ export default {
     return {
       mode: "classic", // 默认为经典模式,
       scrollTopPercent: 0,
-      spinning: false,
       hideFileBar: false // 是否折叠 FileBar
     };
   },
   computed: {
-    ...mapGetters(["editingFile", "currentFile"]),
+    ...mapGetters(["editingFile"]),
     coderStyle() {
       let o = {};
       switch (this.mode) {
@@ -147,7 +143,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["addFile", "setCurrentFile"]),
+    ...mapMutations(["addFile", "setCurrentFile", "saveFile"]),
     changeMode(mode) {
       this.mode = mode;
     },
@@ -158,9 +154,8 @@ export default {
     onSave() {
       if (!this.editingFile) return;
       if (this.editingFile.saveAfterModified) return;
-      this.spinning = true;
       const file = this.editingFile;
-      this.saveFile(file);
+      this.saveDocument(file);
     },
     onExport() {
       if (!this.editingFile) return;
@@ -171,15 +166,15 @@ export default {
         type: "saveFile"
       });
     },
-    saveFile(file) {
+    saveDocument(file) {
       ipcRenderer.send("saveFile", file);
       ipcRenderer.on("write-done", (e, isSuccess, err) => {
-        this.spinning = false;
         if (isSuccess) {
           // todo i18n格式化参数有问题
           // ! 原因未知
           this.addFile(file);
           this.setCurrentFile(file.path);
+          this.saveFile(file.path);
           this.$notification.success({
             message: this.$t("editor.saveFile.success", {
               name: file.name
@@ -214,7 +209,7 @@ export default {
         name: filename,
         path
       };
-      this.saveFile(newFile);
+      this.saveDocument(newFile);
     });
   }
 };

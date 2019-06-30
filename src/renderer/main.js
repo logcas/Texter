@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import VueI18n from 'vue-i18n'
 import './assets/style/ant_custom.less'
+// import 'highlight.js/styles/github.css'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios

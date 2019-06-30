@@ -3,32 +3,35 @@
 </template>
 
 <script>
+// import markedOptions from '../../config/marked';
+import MarkedRenderWorker from '../../workers/marked.worker';
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("File");
-const hljs = require("highlight.js"); // https://highlightjs.org/
-const markdown = require("markdown-it")({
-  highlight: function(str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value;
-      } catch (__) {}
-    }
-    return ""; // use external default escaping
-  }
-});
+// const marked = require('marked');
+const markedWorker = new MarkedRenderWorker();
 
 export default {
   name: "mark-displayer",
   props: {
     scrollTopPercent: Number
   },
-  computed: {
-    ...mapGetters(["currentCode"]),
-    htmlCode() {
-      return markdown.render(this.currentCode);
+  data() {
+    return {
+      htmlCode: '',
     }
   },
+  computed: {
+    ...mapGetters(["currentCode"]),
+    /*
+    htmlCode() {
+      return marked(this.currentCode, markedOptions);
+    }
+    */
+  },
   watch: {
+    currentCode(code) {
+      markedWorker.postMessage(code);
+    },
     scrollTopPercent(val) {
       // todo: scrollbar 滑块的长度不一
       let scrollHeight = this.$refs.markdownBody.scrollHeight;
@@ -37,6 +40,11 @@ export default {
         this.$refs.markdownBody.scrollTop = scrollHeight * this.scrollTopPercent / 100;
       });
     }
+  },
+  created() {
+    markedWorker.onmessage = (e) => {
+      this.htmlCode = e.data;
+    };
   }
 };
 </script>

@@ -56,15 +56,9 @@ const mutations = {
   },
   removeFile(state, path) {
     if(!path || state.fileList[path] === null) return;
-    let o = {};
-    for(let p in state.fileList) {
-      if(state.fileList.hasOwnProperty(p) && p !== path) {
-        o[p] = state.fileList[p];
-      }
-    }
     if(state.currentFile === path) state.currentFile = null;
-    state.fileList = o;
-    console.log(o);
+    let { [path]: _p, ...others } = state.fileList;
+    state.fileList = others;
   },
   modifyFile(state) {
     if(!state.currentFile || state.fileList[state.currentFile] === null) return;

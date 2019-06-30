@@ -70,13 +70,15 @@
     "lowdb": "^1.0.0",
     "markdown": "^0.5.0",
     "markdown-it": "^8.4.2",
+    "marked": "^0.6.2",
     "vue": "^2.5.16",
     "vue-codemirror": "^4.0.6",
     "vue-electron": "^1.0.6",
     "vue-i18n": "^8.11.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "vuex-electron": "^1.0.0"
+    "vuex-electron": "^1.0.0",
+    "worker-loader": "^2.0.0"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
