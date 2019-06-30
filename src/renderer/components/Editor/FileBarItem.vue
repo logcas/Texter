@@ -8,7 +8,7 @@
     :title="file.name"
   >
     <a-icon type="file-markdown" class="file-icon"/>
-    <span class="file-modified-time">06-14</span>
+    <span class="file-modified-time">{{ file.lastModified | parseTimeWithoutYear }}</span>
     <span>{{ file.name }}</span>
     <div class="file-save-mark" v-show="!file.saveAfterModified"></div>
     <a-icon type="close-circle" class="close-btn" @click.native="onClose"/>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { parseTimeWithoutYear } from '../../utils/filters';
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapActions } = createNamespacedHelpers("File");
 export default {
@@ -25,6 +26,9 @@ export default {
   },
   computed: {
     ...mapGetters(["currentFile"])
+  },
+  filters: {
+    parseTimeWithoutYear
   },
   methods: {
     ...mapActions(["setCurrentFile", "removeFile", "modifyFile", "saveFile", "changeFile"]),
@@ -50,7 +54,7 @@ export default {
         this.removeFile(this.file.path);
       }
     }
-  }
+  },
 };
 </script>
 
