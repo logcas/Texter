@@ -7,6 +7,7 @@
 import mermaid from "mermaid/dist/mermaid";
 import MarkedRenderWorker from "../../workers/marked.worker";
 import { createNamespacedHelpers } from "vuex";
+import 'katex/dist/katex.css';
 const { mapGetters } = createNamespacedHelpers("File");
 // const marked = require('marked');
 const markedWorker = new MarkedRenderWorker();
