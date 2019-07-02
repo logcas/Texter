@@ -26,11 +26,12 @@ Pure & Cool Markdown Editor built by Electron
 - [x] Multiple modes(Full\Half screen write\read)
 - [x] Internationalization
 - [x] Multiple theme
+- [x] Charts/Diagrams support
+- [x] TeX math support
 - [ ] Grammatical hint
 - [ ] Custom direatives
 - [ ] Plugin System
 - [ ] Export as HTML and PDF
-
 
 ## License
 MIT
