@@ -4,11 +4,18 @@
 
 <script>
 // import markedOptions from '../../config/marked';
-import MarkedRenderWorker from '../../workers/marked.worker';
+import mermaid from "mermaid/dist/mermaid";
+import MarkedRenderWorker from "../../workers/marked.worker";
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("File");
 // const marked = require('marked');
 const markedWorker = new MarkedRenderWorker();
+
+mermaid.parseError = function(err, hash) {
+  console.log("parseError:");
+  console.log(err);
+  console.log(hash);
+};
 
 export default {
   name: "mark-displayer",
@@ -17,11 +24,11 @@ export default {
   },
   data() {
     return {
-      htmlCode: '',
-    }
+      htmlCode: ""
+    };
   },
   computed: {
-    ...mapGetters(["currentCode"]),
+    ...mapGetters(["currentCode"])
     /*
     htmlCode() {
       return marked(this.currentCode, markedOptions);
@@ -37,14 +44,27 @@ export default {
       let scrollHeight = this.$refs.markdownBody.scrollHeight;
       let scrollTop = this.$refs.markdownBody.scrollTop;
       this.$nextTick(() => {
-        this.$refs.markdownBody.scrollTop = scrollHeight * this.scrollTopPercent / 100;
+        this.$refs.markdownBody.scrollTop =
+          (scrollHeight * this.scrollTopPercent) / 100;
       });
     }
   },
   created() {
-    markedWorker.onmessage = (e) => {
+    markedWorker.onmessage = e => {
       this.htmlCode = e.data;
+      this.$nextTick(() => {
+        try {
+          mermaid.init();
+        } catch (e) {
+          console.log("语法错误");
+        }
+      });
     };
+  },
+  mounted() {
+    // this.mermaid.initialize({startOnLoad:true});
+    // console.log(this.mermaid.render);
+    mermaid.initialize({ startOnLoad: false });
   }
 };
 </script>
