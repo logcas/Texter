@@ -71,7 +71,7 @@
     "lowdb": "^1.0.0",
     "markdown": "^0.5.0",
     "markdown-it": "^8.4.2",
-    "marked": "^0.6.2",
+    "marked": "^0.7.0",
     "mermaid": "^8.1.0",
     "vue": "^2.5.16",
     "vue-codemirror": "^4.0.6",
